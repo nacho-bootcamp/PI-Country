@@ -14,4 +14,12 @@ const idContries = (req, res) => {
   }
 };
 
-module.exports = { allContries, idContries };
+const contriesName = (req, res) => {
+  try {
+    return res.status(200).send("buscar por id");
+  } catch (error) {
+    res.status(500).send({ message: error });
+  }
+};
+
+module.exports = { allContries, idContries, contriesName };
