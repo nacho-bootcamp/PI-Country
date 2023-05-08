@@ -1,34 +1,31 @@
-const { Activity, Country } = require("../database/db");
+const {
+  actionCreaction,
+  activitiAll,
+} = require("../controllers/controllerAct");
 
 const getActiviti = async (req, res) => {
-  const allAct = await Activity.findAll();
-
   try {
+    const allAct = await activitiAll();
     return res.status(200).json(allAct);
   } catch (error) {
-    res.status(500).send({ message: error });
+    res.status(500).send(error.message);
   }
 };
 
 const postActiviti = async (req, res) => {
   const { name, difficulty, duration, season, countries } = req.body;
 
-  const createAct = await Activity.create({
-    name,
-    difficulty,
-    duration,
-    season,
-  });
-  const countriesList = await Country.findAll({
-    where: { id: countries },
-  });
-
-  await createAct.addCountries(countriesList);
-
   try {
-    return res.status(200).json(createAct);
+    const createAct = await actionCreaction(
+      name,
+      difficulty,
+      duration,
+      season,
+      countries
+    );
+    return res.status(200).send("se creo exitosamente la actividad");
   } catch (error) {
-    res.status(500).send({ message: error });
+    res.status(500).send(error.message);
   }
 };
 
