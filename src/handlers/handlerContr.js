@@ -1,17 +1,21 @@
+const { getById } = require("../controllers/controllerContr");
+
 const contriesName = (req, res) => {
+  const { name } = req.query;
+
+  if (!id) throw Error(`el ${id} es requerido`);
   try {
-    return res.status(200).send("buscar por id");
+    return res.status(200).send("buscar por nombre");
   } catch (error) {
     res.status(500).send({ message: error });
   }
 };
 
-const idContries = (req, res) => {
+const idContries = async (req, res) => {
   const { id } = req.params;
-
-  if (!id) throw Error(`el ${id} es requerido`);
   try {
-    return res.status(200).send("buscar por nombre");
+    const getCountriesId = await getById(id);
+    return res.status(200).json(getCountriesId);
   } catch (error) {
     res.status(500).send({ message: error });
   }

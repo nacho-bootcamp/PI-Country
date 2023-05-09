@@ -1,5 +1,5 @@
 const axios = require("axios");
-const { Country } = require("../database/db.js");
+const { Country, Activity } = require("../database/db.js");
 
 const getAllCountries = async (req, res) => {
   const response = await axios("https://restcountries.com/v3/all");
@@ -20,4 +20,21 @@ const getAllCountries = async (req, res) => {
   return country;
 };
 
-module.exports = { getAllCountries };
+const getById = async (id) => {
+  if (!id) throw Error("Pais no encontrado");
+
+  const countries = await Country.findOne({
+    where: {
+      id: id.toUpperCase(),
+    },
+    include: [
+      {
+        model: Activity,
+        attributes: ["name", "difficulty", "duration", "season"],
+        through: { attributes: [] },
+      },
+    ],
+  });
+  return countries;
+};
+module.exports = { getAllCountries, getById };
