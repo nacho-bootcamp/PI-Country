@@ -4,7 +4,7 @@ const { getAllCountries } = require("../controllers/controllerContr");
 
 const countries = Router();
 
-countries.get("/", getAllCountries);
+countries.get("/db", getAllCountries);
 countries.get("/", contriesName);
 countries.get("/:id", idContries);
 
