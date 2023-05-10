@@ -1,11 +1,14 @@
-const { getById } = require("../controllers/controllerContr");
+const {
+  getById,
+  getByName,
+  getCountries,
+} = require("../controllers/controllerContr");
 
 const contriesName = (req, res) => {
   const { name } = req.query;
-
-  if (!id) throw Error(`el ${id} es requerido`);
   try {
-    return res.status(200).send("buscar por nombre");
+    const getCountriesName = name ? getByName(name) : getCountries();
+    return res.status(200).send(getCountriesName);
   } catch (error) {
     res.status(500).send({ message: error });
   }

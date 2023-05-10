@@ -1,5 +1,6 @@
 const axios = require("axios");
 const { Country, Activity } = require("../database/db.js");
+const { Op } = require("sequelize");
 
 const getAllCountries = async (req, res) => {
   const response = await axios("https://restcountries.com/v3/all");
@@ -20,8 +21,38 @@ const getAllCountries = async (req, res) => {
   return country;
 };
 
+const getCountries = async () => {
+  const countries = await Country.findAll({
+    include: [
+      {
+        model: Activity,
+        attributes: ["name", "difficulty", "duration", "season"],
+        through: { attributes: [] },
+      },
+    ],
+  });
+  return countries;
+};
+
+const getByName = async (name) => {
+  const country = await Country.findAll({
+    where: {
+      name: {
+        [Op.like]: `%${name}%`,
+      },
+    },
+    include: [
+      {
+        model: Activity,
+        attributes: ["name", "difficulty", "duration", "season"],
+        through: { attributes: [] },
+      },
+    ],
+  });
+};
+
 const getById = async (id) => {
-  if (!id) throw Error("Pais no encontrado");
+  if (!id) throw Error(` el pais con ese ${id} no existe `);
 
   const countries = await Country.findOne({
     where: {
@@ -37,4 +68,4 @@ const getById = async (id) => {
   });
   return countries;
 };
-module.exports = { getAllCountries, getById };
+module.exports = { getAllCountries, getById, getByName, getCountries };
