@@ -1,31 +1,44 @@
 const { Activity, Country } = require("../database/db");
 
-const activitiAll = async () => {
-  const allActiviti = await Activity.findAll();
-  if (!allActiviti.length) throw Error("No existe ninguna Actividad");
-  return allActiviti;
+// Obtener todas las actividades
+const getAllActivities = async () => {
+  const allActivities = await Activity.findAll();
+
+  // Verificar que existan actividades
+  if (!allActivities.length) throw Error("No existe ninguna actividad");
+
+  // Devolver todas las actividades
+  return allActivities;
 };
 
-const actionCreaction = async (
+// Crear una nueva actividad
+const createActivity = async (
   name,
   difficulty,
   duration,
   season,
   countries
 ) => {
+  // Verificar que se proporcionen todos los datos necesarios
   if (!name || !difficulty || !duration || !season || !countries)
-    throw Error("Falta info ");
-  const creation = await Activity.create({
+    throw Error("Falta información");
+
+  // Crear la actividad en la base de datos
+  const newActivity = await Activity.create({
     name,
     difficulty,
     duration,
     season,
   });
+
+  // Obtener la lista de países asociados a la actividad
   const countriesList = await Country.findAll({
     where: { id: countries },
   });
 
-  await creation.addCountries(countriesList);
+  // Asociar los países a la actividad
+  await newActivity.addCountries(countriesList);
 };
 
-module.exports = { actionCreaction, activitiAll };
+// Exportar los métodos
+module.exports = { createActivity, getAllActivities };

@@ -2,6 +2,7 @@ const axios = require("axios");
 const { Country, Activity } = require("../database/db.js");
 const { Op } = require("sequelize");
 
+// Obtiene todos los países de la API restcountries y los almacena en la base de datos
 const getAllCountries = async (req, res) => {
   const response = await axios("https://restcountries.com/v3/all");
   const countriesApi = response.data.map((countryD) => ({
@@ -21,6 +22,7 @@ const getAllCountries = async (req, res) => {
   return country;
 };
 
+// Obtiene todos los países de la base de datos junto con las actividades asociadas
 const getCountries = async () => {
   const countries = await Country.findAll({
     include: [
@@ -34,6 +36,7 @@ const getCountries = async () => {
   return countries;
 };
 
+// Obtiene un país por nombre de la base de datos junto con las actividades asociadas
 const getByName = async (name) => {
   const country = await Country.findAll({
     where: {
@@ -52,6 +55,7 @@ const getByName = async (name) => {
   return country;
 };
 
+// Obtiene un país por ID de la base de datos junto con las actividades asociadas
 const getById = async (id) => {
   if (!id) throw Error(` el pais con ese ${id} no existe `);
 
@@ -69,4 +73,5 @@ const getById = async (id) => {
   });
   return countries;
 };
+
 module.exports = { getAllCountries, getById, getByName, getCountries };
