@@ -4,10 +4,12 @@ const {
   getCountries,
 } = require("../controllers/controllerContr");
 
-const contriesName = (req, res) => {
+const contriesName = async (req, res) => {
   const { name } = req.query;
   try {
-    const getCountriesName = name ? getByName(name) : getCountries();
+    const getCountriesName = name
+      ? await getByName(name)
+      : await getCountries();
     return res.status(200).send(getCountriesName);
   } catch (error) {
     res.status(500).send({ message: error });

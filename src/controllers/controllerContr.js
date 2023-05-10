@@ -49,6 +49,7 @@ const getByName = async (name) => {
       },
     ],
   });
+  return country;
 };
 
 const getById = async (id) => {
