@@ -24,7 +24,7 @@ const getAllCountries = async (req, res) => {
 
 // Obtiene todos los países de la base de datos junto con las actividades asociadas
 const getCountries = async () => {
-  await Country.findAll({
+  return await Country.findAll({
     include: [
       {
         model: Activity,
@@ -37,8 +37,8 @@ const getCountries = async () => {
 
 // Obtiene un país por nombre de la base de datos junto con las actividades asociadas
 
-const getByName = async (name) =>
-  await Country.findAll({
+const getByName = async (name) => {
+  const response = await Country.findAll({
     where: { name: { [Op.iLike]: `%${name}%` } },
     include: [
       {
@@ -48,6 +48,8 @@ const getByName = async (name) =>
       },
     ],
   });
+  return response.length ? response : getCountries();
+};
 
 // Obtiene un país por ID de la base de datos junto con las actividades asociadas
 const getById = async (id) => {
