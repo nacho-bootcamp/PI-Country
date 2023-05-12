@@ -1,10 +1,11 @@
 import React from "react";
 //import styles from "./Home.module.css";
+import CotainerCard from "../../components/ContainerCard/CotainerCard";
 
 const Home = () => {
   return (
     <div>
-      <h1>soy el home</h1>
+      <CotainerCard />
     </div>
   );
 };
