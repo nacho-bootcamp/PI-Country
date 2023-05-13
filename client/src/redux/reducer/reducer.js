@@ -1,4 +1,4 @@
-import { GET_COUNTRIES } from "./actions/actions";
+import { GET_COUNTRIES } from "../actions/actions";
 const initialState = {
   countries: [],
 };
@@ -15,4 +15,4 @@ const rootReducer = (state = initialState, action) => {
   }
 };
 
-module.exports(rootReducer);
+export default rootReducer;
