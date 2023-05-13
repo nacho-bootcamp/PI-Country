@@ -10,7 +10,6 @@ const contriesName = async (req, res) => {
     const getCountriesName = name
       ? await getByName(name)
       : await getCountries();
-    console.log(getCountriesName);
 
     return res.status(200).json(getCountriesName);
   } catch (error) {
