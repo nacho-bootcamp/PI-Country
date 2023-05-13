@@ -27,7 +27,7 @@ export const filterCountry = (name) => {
       .then((response) => {
         dispatch({
           type: FILTER,
-          payload: { filterByName: response.data, filterName: name },
+          payload: { filterByName: response.data, ...name },
         });
       })
       .catch((error) => {
