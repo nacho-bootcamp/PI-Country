@@ -5,6 +5,7 @@ import {
   CLEAN,
   FILTER,
   CLEAN_COUNTRY_ID,
+  ORDER,
 } from "./actions";
 
 export const getCountries = () => {
@@ -19,21 +20,12 @@ export const getCountries = () => {
   };
 };
 
-export const filterCountry = (name) => {
-  if (!name) name = "";
-  return function (dispatch) {
-    return axios
-      .get(`http://localhost:3001/countries?name=${name}`)
-      .then((response) => {
-        dispatch({
-          type: FILTER,
-          payload: { filterByName: response.data, ...name },
-        });
-      })
-      .catch((error) => {
-        console.error(error);
-      });
-  };
+export const filterContinent = (continent) => {
+  return { type: FILTER, payload: continent };
+};
+
+export const orderCard = (order) => {
+  return { type: ORDER, payload: order };
 };
 
 export const getCountriesById = (id) => {

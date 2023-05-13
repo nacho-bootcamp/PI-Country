@@ -4,6 +4,7 @@ import {
   CLEAN,
   GET_ACTIVITIES,
   LOADING_NEW_ACTIVITY,
+  FILTER,
 } from "./actions";
 
 export const getActivities = () => {
@@ -13,12 +14,15 @@ export const getActivities = () => {
     dispatch({ type: GET_ACTIVITIES, payload: activity });
   };
 };
-
+export const filterActivity = (activity) => ({
+  type: FILTER,
+  payload: activity,
+});
 export const createActivities = () => {
   return async function (dispatch) {
     try {
       dispatch({ type: LOADING_NEW_ACTIVITY, payload: true });
-      const response = await axios.post("http://localhost:3001/activities");
+      const response = await axios.post("hhttp://localhost:3001/activities");
       const activities = response.data;
       dispatch({ type: LOADING_NEW_ACTIVITY, payload: false });
       dispatch({ type: CREATE_ACTIVITY, payload: activities });

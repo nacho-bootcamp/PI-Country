@@ -1,9 +1,14 @@
-import { CREATE_ACTIVITY, CLEAN, GET_ACTIVITIES } from "../actions/actions";
+import {
+  CREATE_ACTIVITY,
+  CLEAN,
+  GET_ACTIVITIES,
+  FILTER,
+} from "../actions/actions";
 
 const initialState = {
-  activities: { all: [], loaded: false },
-  newActivity: { created: false, info: "", error: "" },
-  newActivityloading: false,
+  activities: [],
+  selectedActivity: "",
+  filteredActivities: [],
 };
 
 export const activity = (state = initialState, action) => {
@@ -18,6 +23,18 @@ export const activity = (state = initialState, action) => {
       return {
         activities: { all: [], loaded: false },
         newActivity: { created: false, info: "", error: "" },
+      };
+    case FILTER:
+      const filterAct =
+        action.payload === ""
+          ? state.activities
+          : state.activities.filter(
+              (activity) => activity.name === action.payload
+            );
+      return {
+        ...state,
+        selectedActivity: action.payload,
+        filteredActivities: filterAct,
       };
     default:
       return state;

@@ -4,7 +4,7 @@ import Card from "../Card/Card";
 import { useSelector } from "react-redux";
 
 const CotainerCard = () => {
-  const countries = useSelector((state) => state.countries);
+  const countries = useSelector((state) => state.countries.countries);
 
   return (
     <div className={styles.container}>
