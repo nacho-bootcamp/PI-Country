@@ -1,34 +1,18 @@
-import React, { useEffect, useState } from "react";
-import ContainerCard from "../../components/ContainerCard/CotainerCard";
-import Filter from "../../components/Filter/Filter";
-import { useDispatch, useSelector } from "react-redux";
+import React from "react";
+//import styles from "./Home.module.css";
+import CotainerCard from "../../components/ContainerCard/CotainerCard";
+import { useDispatch } from "react-redux";
+import { useEffect } from "react";
 import { getCountries } from "../../redux/actions/countries";
 
 const Home = () => {
   const dispatch = useDispatch();
-  const { countries, selectedContinent } = useSelector(
-    (state) => state.countries.country
-  );
-  const [filteredCountries, setFilteredCountries] = useState([]);
-
   useEffect(() => {
     dispatch(getCountries());
   }, [dispatch]);
-
-  useEffect(() => {
-    if (selectedContinent !== "") {
-      setFilteredCountries(
-        countries.filter((country) => country.continent === selectedContinent)
-      );
-    } else {
-      setFilteredCountries(countries);
-    }
-  }, [selectedContinent, countries]);
-
   return (
     <div>
-      <Filter />
-      <ContainerCard countries={filteredCountries} />
+      <CotainerCard />
     </div>
   );
 };

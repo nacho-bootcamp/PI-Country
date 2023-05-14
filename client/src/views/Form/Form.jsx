@@ -1,13 +1,20 @@
 import React, { useState } from "react";
+//import axios from "axios";
 import styles from "./Form.module.css";
+import { useSelector, useDispatch } from "react-redux";
+import { useEffect } from "react";
 
 const Form = () => {
+  const country = useSelector((state) => state.countries.countries);
+  const dispatch = useDispatch();
+  useEffect(() => {}, []);
+
   const [formData, setFormData] = useState({
     name: "",
     difficulty: 1,
     duration: "",
     season: "",
-    countries: "",
+    countries: [],
   });
 
   const handleInputChange = (event) => {
@@ -17,8 +24,19 @@ const Form = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
+    // axios
+    //   .post("http://localhost:3001/activities", formData)
+    //   .then((res) => alert("actividad creada"))
+    //   .catch((error) => alert("error al crear"));
     console.log(formData);
     // aquí puedes agregar la lógica para enviar los datos a la base de datos
+  };
+
+  const handlerActivy = (event) => {
+    setFormData({
+      ...formData,
+      countries: [...formData.countries, event.target.value],
+    });
   };
 
   return (
@@ -105,12 +123,16 @@ const Form = () => {
           <select
             name="countries"
             value={formData.countries}
-            onChange={handleInputChange}
+            onChange={handlerActivy}
           >
             <option value={""}>Select a country</option>
-            <option value={"red"}>Red</option>
-            <option value={"blue"}>Blue</option>
-            <option value={"green"}>Green</option>
+            {country.map((element) => {
+              return (
+                <option key={element.id} value={element.id}>
+                  {element.name}
+                </option>
+              );
+            })}
           </select>
         </div>
         <button className={styles.button}>Create Activity</button>

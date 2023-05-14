@@ -2,10 +2,10 @@ import axios from "axios";
 import {
   GET_COUNTRIES,
   GET_BY_ID,
-  CLEAN,
-  FILTER,
   CLEAN_COUNTRY_ID,
-  ORDER,
+  // CLEAN,
+  // FILTER,
+  // ORDER,
 } from "./actions";
 
 export const getCountries = () => {
@@ -19,15 +19,6 @@ export const getCountries = () => {
     }
   };
 };
-
-export const filterContinent = (continent) => {
-  return { type: FILTER, payload: continent };
-};
-
-export const orderCard = (order) => {
-  return { type: ORDER, payload: order };
-};
-
 export const getCountriesById = (id) => {
   return async function (dispatch) {
     try {
@@ -43,11 +34,5 @@ export const getCountriesById = (id) => {
 export const cleanId = () => {
   return {
     type: CLEAN_COUNTRY_ID,
-  };
-};
-
-export const clean = () => {
-  return {
-    type: CLEAN,
   };
 };
