@@ -2,6 +2,7 @@ import {
   CLEAN_COUNTRY_ID,
   GET_BY_ID,
   GET_COUNTRIES,
+  SEARCH,
   //FILTER,
   //ORDER,
 } from "../actions/actions";
@@ -24,6 +25,12 @@ export const countries = (state = initialState, action) => {
       return {
         ...state,
         selectedCountry: action.payload,
+      };
+
+    case SEARCH:
+      return {
+        ...state,
+        countries: [action.payload],
       };
     case CLEAN_COUNTRY_ID:
       return { ...state, selectedCountry: {} };

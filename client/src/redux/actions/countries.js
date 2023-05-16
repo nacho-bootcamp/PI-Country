@@ -3,6 +3,7 @@ import {
   GET_COUNTRIES,
   GET_BY_ID,
   CLEAN_COUNTRY_ID,
+  SEARCH,
   // CLEAN,
   // FILTER,
   // ORDER,
@@ -27,6 +28,20 @@ export const getCountriesById = (id) => {
       dispatch({ type: GET_BY_ID, payload: countries });
     } catch (error) {
       dispatch({ type: GET_BY_ID, payload: { error: error.message } });
+    }
+  };
+};
+
+export const getCountriesByName = (name) => {
+  return async function (dispatch) {
+    try {
+      const response = await axios.get(
+        `http://localhost:3001/countries?name=${name})}`
+      );
+      const countries = response.data;
+      dispatch({ type: SEARCH, payload: countries });
+    } catch (error) {
+      dispatch({ type: SEARCH, payload: { error: error.message } });
     }
   };
 };

@@ -4,6 +4,7 @@ import CotainerCard from "../../components/ContainerCard/CotainerCard";
 import { useDispatch } from "react-redux";
 import { useEffect } from "react";
 import { getCountries } from "../../redux/actions/countries";
+import SearchBar from "../../components/SearchBar/SearchBar";
 
 const Home = () => {
   const dispatch = useDispatch();
@@ -12,6 +13,7 @@ const Home = () => {
   }, [dispatch]);
   return (
     <div>
+      <SearchBar />
       <CotainerCard />
     </div>
   );
