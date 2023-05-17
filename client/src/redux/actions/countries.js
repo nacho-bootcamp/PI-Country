@@ -4,8 +4,7 @@ import {
   GET_BY_ID,
   CLEAN_COUNTRY_ID,
   SEARCH,
-  // CLEAN,
-  // FILTER,
+  FILTER,
   // ORDER,
 } from "./actions";
 
@@ -43,6 +42,13 @@ export const getCountriesByName = (name) => {
     } catch (error) {
       dispatch({ type: SEARCH, payload: { error: error.message } });
     }
+  };
+};
+
+export const filterCountries = (continent) => {
+  return {
+    type: FILTER,
+    payload: continent,
   };
 };
 

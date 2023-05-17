@@ -3,13 +3,13 @@ import {
   GET_BY_ID,
   GET_COUNTRIES,
   SEARCH,
-  //FILTER,
+  FILTER,
   //ORDER,
 } from "../actions/actions";
 
 const initialState = {
   countries: [],
-  filteredCountries: [],
+  allCountries: [],
   selectedCountry: {},
 };
 
@@ -19,6 +19,7 @@ export const countries = (state = initialState, action) => {
       return {
         ...state,
         countries: action.payload,
+        allCountries: [...state.countries, action.payload],
       };
     // case ORDER:
     case GET_BY_ID:
@@ -31,6 +32,18 @@ export const countries = (state = initialState, action) => {
       return {
         ...state,
         countries: [action.payload],
+      };
+    case FILTER:
+      const allCountries = state.allCountries;
+      const countriesFilt =
+        action.payload === "All"
+          ? allCountries
+          : allCountries.filter(
+              (country) => country.continent === action.payload
+            );
+      return {
+        ...state,
+        countries: countriesFilt,
       };
     case CLEAN_COUNTRY_ID:
       return { ...state, selectedCountry: {} };
