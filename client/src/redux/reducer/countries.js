@@ -19,7 +19,7 @@ export const countries = (state = initialState, action) => {
       return {
         ...state,
         countries: action.payload,
-        allCountries: [...state.countries, action.payload],
+        allCountries: action.payload,
       };
     // case ORDER:
     case GET_BY_ID:
@@ -31,7 +31,7 @@ export const countries = (state = initialState, action) => {
     case SEARCH:
       return {
         ...state,
-        countries: [action.payload],
+        countries: action.payload,
       };
     case FILTER:
       const allCountries = state.allCountries;
