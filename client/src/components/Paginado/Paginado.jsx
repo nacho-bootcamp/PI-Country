@@ -31,7 +31,7 @@ const Pagination = ({ itemsPerPage, totalItems, paginate }) => {
   const renderPageNumbers = () => {
     const visiblePageNumbers = pageNumbers.slice(
       currentPage - 1,
-      currentPage + 8
+      currentPage + 6
     );
 
     return visiblePageNumbers.map((number) => (
@@ -49,21 +49,21 @@ const Pagination = ({ itemsPerPage, totalItems, paginate }) => {
 
   return (
     <ul className={styles.pagination}>
-      <button
-        className={styles.navigationButton}
-        disabled={currentPage === 1}
-        onClick={handleBack}
-      >
-        Back
-      </button>
+      {currentPage > 1 && (
+        <button className={styles.navigationButton} onClick={handleBack}>
+          Back
+        </button>
+      )}
       {renderPageNumbers()}
-      <button
-        className={styles.navigationButton}
-        disabled={currentPage === pageNumbers.length}
-        onClick={handleNext}
-      >
-        Next
-      </button>
+      {currentPage < 25 && (
+        <button
+          className={styles.navigationButton}
+          disabled={currentPage === pageNumbers.length}
+          onClick={handleNext}
+        >
+          Next
+        </button>
+      )}
     </ul>
   );
 };
