@@ -1,0 +1,5 @@
+.nav {
+  display: flex;
+  align-items: flex-end;
+  gap: 10rem;
+}

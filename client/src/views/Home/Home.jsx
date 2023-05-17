@@ -1,10 +1,11 @@
 import React from "react";
-//import styles from "./Home.module.css";
+import styles from "./Home.module.css";
 import CotainerCard from "../../components/ContainerCard/CotainerCard";
 import { useDispatch } from "react-redux";
 import { useEffect } from "react";
 import { getCountries } from "../../redux/actions/countries";
 import SearchBar from "../../components/SearchBar/SearchBar";
+import Filter from "../../components/Filter/Filter";
 
 const Home = () => {
   const dispatch = useDispatch();
@@ -13,7 +14,10 @@ const Home = () => {
   }, [dispatch]);
   return (
     <div>
-      <SearchBar />
+      <div className={styles.nav}>
+        <Filter />
+        <SearchBar />
+      </div>
       <CotainerCard />
     </div>
   );

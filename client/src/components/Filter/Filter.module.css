@@ -1,0 +1,6 @@
+.filter {
+  display: flex;
+  gap: 20rem;
+  padding: 0 2rem;
+  text-align: center;
+}
