@@ -5,7 +5,7 @@ import {
   CLEAN_COUNTRY_ID,
   SEARCH,
   FILTER,
-  // ORDER,
+  ORDER,
 } from "./actions";
 
 export const getCountries = () => {
@@ -49,6 +49,12 @@ export const filterCountries = (continent) => {
   return {
     type: FILTER,
     payload: continent,
+  };
+};
+export const orderName = (name) => {
+  return {
+    type: ORDER,
+    payload: name,
   };
 };
 

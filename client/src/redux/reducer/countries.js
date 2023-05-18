@@ -4,6 +4,7 @@ import {
   GET_COUNTRIES,
   SEARCH,
   FILTER,
+  ORDER,
   //ORDER,
 } from "../actions/actions";
 
@@ -45,8 +46,34 @@ export const countries = (state = initialState, action) => {
         ...state,
         countries: countriesFilt,
       };
+
+    case ORDER:
+      let order =
+        action.payload === "Ascendente"
+          ? state.countries.sort(function (a, b) {
+              if (a.name > b.name) {
+                return 1;
+              }
+              if (b.name > a.name) {
+                return -1;
+              }
+              return 0;
+            })
+          : state.countries.sort(function (a, b) {
+              if (a.name > b.name) {
+                return -1;
+              }
+              if (b.name > a.name) {
+                return 1;
+              }
+              return 0;
+            });
+      return {
+        ...state,
+        countries: order,
+      };
     case CLEAN_COUNTRY_ID:
-      return { ...state, selectedCountry: {} };
+      return { ...state, selectedCountry: {}, allCountries: [], countries: [] };
     default:
       return state;
   }
