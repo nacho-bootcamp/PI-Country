@@ -1,16 +1,20 @@
-import React from "react";
+import React, { useState } from "react";
 import styles from "./Filter.module.css";
 import { useDispatch } from "react-redux";
 import { filterCountries, orderName } from "../../redux/actions/countries";
 
-const Filter = () => {
+const Filter = ({ handlerCurrent }) => {
   const dispatch = useDispatch();
+  const [order, setOrder] = useState("");
+
   const handlerFilter = (event) => {
     dispatch(filterCountries(event.target.value));
   };
 
   const handlerOrder = (event) => {
     dispatch(orderName(event.target.value));
+    handlerCurrent();
+    setOrder(event.target.value);
   };
   return (
     <div className={styles.filter}>
@@ -29,7 +33,7 @@ const Filter = () => {
 
       <div>
         <h3>Order:</h3>
-        <select onChange={handlerOrder}>
+        <select value={order} onChange={handlerOrder}>
           <option value="Ascendente">Ascendente</option>
           <option value="Descendente">Descendente</option>
         </select>

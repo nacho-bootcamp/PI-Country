@@ -4,6 +4,7 @@ import Card from "../Card/Card";
 import { useSelector } from "react-redux";
 import { useState } from "react";
 import Pagination from "../Paginado/Paginado";
+import Filter from "../Filter/Filter";
 
 const ContainerCard = () => {
   const countries = useSelector((state) => state.countries.countries);
@@ -20,9 +21,13 @@ const ContainerCard = () => {
   const paginate = (pageNumber) => {
     setCurrentPage(pageNumber);
   };
+  const handlerCurrent = () => {
+    setCurrentPage(1);
+  };
 
   return (
     <div>
+      <Filter handlerCurrent={handlerCurrent} />
       <div className={styles.container}>
         {currentCountries.map((country) => (
           <Card

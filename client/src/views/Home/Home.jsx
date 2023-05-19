@@ -5,7 +5,6 @@ import { useDispatch } from "react-redux";
 import { useEffect } from "react";
 import { getCountries, cleanId } from "../../redux/actions/countries";
 import SearchBar from "../../components/SearchBar/SearchBar";
-import Filter from "../../components/Filter/Filter";
 
 const Home = () => {
   const dispatch = useDispatch();
@@ -17,7 +16,6 @@ const Home = () => {
   return (
     <div>
       <div className={styles.nav}>
-        <Filter />
         <SearchBar />
       </div>
       <CotainerCard />
