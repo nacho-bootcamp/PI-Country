@@ -48,29 +48,20 @@ export const countries = (state = initialState, action) => {
       };
 
     case ORDER:
-      let order =
-        action.payload === "Ascendente"
-          ? state.countries.sort(function (a, b) {
-              if (a.name > b.name) {
-                return 1;
-              }
-              if (b.name > a.name) {
-                return -1;
-              }
-              return 0;
-            })
-          : state.countries.sort(function (a, b) {
-              if (a.name > b.name) {
-                return -1;
-              }
-              if (b.name > a.name) {
-                return 1;
-              }
-              return 0;
-            });
+      let orderedCountries;
+      if (action.payload === "Ascendente") {
+        orderedCountries = [...state.countries].sort((a, b) =>
+          a.name.localeCompare(b.name)
+        );
+      } else {
+        orderedCountries = [...state.countries].sort((a, b) =>
+          b.name.localeCompare(a.name)
+        );
+      }
+
       return {
         ...state,
-        countries: order,
+        countries: orderedCountries,
       };
     case CLEAN_COUNTRY_ID:
       return { ...state, selectedCountry: {}, allCountries: [], countries: [] };
