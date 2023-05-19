@@ -6,6 +6,7 @@ import {
   SEARCH,
   FILTER,
   ORDER,
+  POPULATION,
 } from "./actions";
 
 export const getCountries = () => {
@@ -55,6 +56,12 @@ export const orderName = (name) => {
   return {
     type: ORDER,
     payload: name,
+  };
+};
+export const orderPopulation = (population) => {
+  return {
+    type: POPULATION,
+    payload: population,
   };
 };
 

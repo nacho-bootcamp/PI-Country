@@ -1,7 +1,11 @@
 import React, { useState } from "react";
 import styles from "./Filter.module.css";
 import { useDispatch } from "react-redux";
-import { filterCountries, orderName } from "../../redux/actions/countries";
+import {
+  filterCountries,
+  orderName,
+  orderPopulation,
+} from "../../redux/actions/countries";
 
 const Filter = ({ handlerCurrent }) => {
   const dispatch = useDispatch();
@@ -13,6 +17,12 @@ const Filter = ({ handlerCurrent }) => {
 
   const handlerOrder = (event) => {
     dispatch(orderName(event.target.value));
+    handlerCurrent();
+    setOrder(event.target.value);
+  };
+
+  const handlerPopulation = (event) => {
+    dispatch(orderPopulation(event.target.value));
     handlerCurrent();
     setOrder(event.target.value);
   };
@@ -36,6 +46,13 @@ const Filter = ({ handlerCurrent }) => {
         <select value={order} onChange={handlerOrder}>
           <option value="Ascendente">Ascendente</option>
           <option value="Descendente">Descendente</option>
+        </select>
+      </div>
+      <div>
+        <h3>Population:</h3>
+        <select onChange={handlerPopulation}>
+          <option value="Mayor">Mayor</option>
+          <option value="Menor">Menor</option>
         </select>
       </div>
     </div>

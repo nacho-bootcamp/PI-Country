@@ -5,6 +5,7 @@ export const CLEAN_COUNTRY_ID = "CLEAN_COUNTRY_ID";
 export const FILTER = "FILTER";
 export const ORDER = "ORDER";
 export const SEARCH = "SEARCH";
+export const POPULATION = "POPULATION";
 
 // Activity
 

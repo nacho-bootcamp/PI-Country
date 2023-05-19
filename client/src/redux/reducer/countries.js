@@ -5,7 +5,7 @@ import {
   SEARCH,
   FILTER,
   ORDER,
-  //ORDER,
+  POPULATION,
 } from "../actions/actions";
 
 const initialState = {
@@ -22,7 +22,6 @@ export const countries = (state = initialState, action) => {
         countries: action.payload,
         allCountries: action.payload,
       };
-    // case ORDER:
     case GET_BY_ID:
       return {
         ...state,
@@ -53,16 +52,35 @@ export const countries = (state = initialState, action) => {
         orderedCountries = [...state.countries].sort((a, b) =>
           a.name.localeCompare(b.name)
         );
-      } else {
+      }
+      if (action.payload === "Descendente") {
         orderedCountries = [...state.countries].sort((a, b) =>
           b.name.localeCompare(a.name)
         );
       }
-
       return {
         ...state,
         countries: orderedCountries,
       };
+
+    case POPULATION:
+      let populations;
+      if (action.payload === "Mayor") {
+        populations = [...state.countries].sort(
+          (a, b) => b.population - a.population
+        );
+      } else if (action.payload === "Menor") {
+        populations = [...state.countries].sort(
+          (a, b) => a.population - b.population
+        );
+      } else {
+        populations = [...state.countries];
+      }
+      return {
+        ...state,
+        countries: populations,
+      };
+
     case CLEAN_COUNTRY_ID:
       return { ...state, selectedCountry: {}, allCountries: [], countries: [] };
     default:
