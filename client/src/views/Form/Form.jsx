@@ -14,6 +14,7 @@ const Form = () => {
 
   let countriesList = country.map((coun) => {
     return {
+      id: coun.id,
       name: coun.name,
       flag: coun.flags,
     };
@@ -22,10 +23,11 @@ const Form = () => {
   const [formData, setFormData] = useState({
     name: "",
     difficulty: 1,
-    duration: 0,
+    duration: 1,
     season: "",
     countries: [],
   });
+  console.log(formData);
 
   const handleInputChange = (event) => {
     setFormData({
@@ -42,13 +44,10 @@ const Form = () => {
   };
 
   const handleDurationChange = (event) => {
-    const [hours, minutes] = event.target.value.split(":");
-    const durationInMinutes = parseInt(hours) * 60 + parseInt(minutes);
-
-    setFormData((prevFormData) => ({
-      ...prevFormData,
-      duration: durationInMinutes,
-    }));
+    setFormData({
+      ...formData,
+      [event.target.name]: parseInt(event.target.value),
+    });
   };
 
   const handleSeasonChange = (event) => {
@@ -71,13 +70,13 @@ const Form = () => {
     setFormData({
       name: "",
       difficulty: 1,
-      duration: 0,
+      duration: 1,
       season: "",
       countries: [],
     });
     alert("creacion Exitosa");
   };
-
+  console.log(countriesList);
   return (
     <div className={styles.form}>
       <div className={styles.container}>
@@ -108,56 +107,54 @@ const Form = () => {
           <div className={styles.field}>
             <label htmlFor="duration">Duration:</label>
             <input
-              type="time"
+              type="number"
               name="duration"
-              min="01:00"
-              max="05:59"
-              placeholder="Enter duration"
-              value={
-                formData.duration === 0 ? "" : formatDuration(formData.duration)
-              }
+              max="24"
+              min="1"
+              value={formData.duration}
               onChange={handleDurationChange}
             />
           </div>
           <div className={styles.field}>
             <legend>Season</legend>
             <label>
-              Primavera
+              Spring
               <input
                 type="radio"
                 name="season"
-                value={"primavera"}
-                checked={formData.season === "primavera"}
+                value={"Spring"}
+                checked={formData.season === "Spring"}
+                onChange={handleSeasonChange}
+              />
+            </label>
+
+            <label>
+              Autumn
+              <input
+                type="radio"
+                name="season"
+                value={"Autumn"}
+                checked={formData.season === "Autumn"}
                 onChange={handleSeasonChange}
               />
             </label>
             <label>
-              Otoño
+              Summer
               <input
                 type="radio"
                 name="season"
-                value={"otoño"}
-                checked={formData.season === "otoño"}
+                value={"Summer"}
+                checked={formData.season === "Summer"}
                 onChange={handleSeasonChange}
               />
             </label>
             <label>
-              Verano
+              Winter
               <input
                 type="radio"
                 name="season"
-                value={"verano"}
-                checked={formData.season === "verano"}
-                onChange={handleSeasonChange}
-              />
-            </label>
-            <label>
-              Invierno
-              <input
-                type="radio"
-                name="season"
-                value={"invierno"}
-                checked={formData.season === "invierno"}
+                value={"Winter"}
+                checked={formData.season === "Winter"}
                 onChange={handleSeasonChange}
               />
             </label>
@@ -166,9 +163,10 @@ const Form = () => {
             <label htmlFor="countries">Countries</label>
             <select onChange={handlerSelect}>
               <option>Select a country</option>
+
               {countriesList.map((countri) => {
                 return (
-                  <option key={countri.id} value={countri.name}>
+                  <option key={countri.id} value={countri.id} id="country">
                     {countri.name}
                   </option>
                 );
@@ -184,12 +182,5 @@ const Form = () => {
     </div>
   );
 };
-function formatDuration(durationInMinutes) {
-  const hours = Math.floor(durationInMinutes / 60)
-    .toString()
-    .padStart(2, "0");
-  const minutes = (durationInMinutes % 60).toString().padStart(2, "0");
-  return `${hours}:${minutes}`;
-}
 
 export default Form;
