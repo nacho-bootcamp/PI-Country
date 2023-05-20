@@ -2,6 +2,7 @@ const {
   createActivity,
   getAllActivities,
   getByIdActiviti,
+  putActivities,
 } = require("../controllers/controllerAct");
 
 const getActiviti = async (req, res) => {
@@ -39,5 +40,21 @@ const getByIdAct = async (req, res) => {
     res.status(500).send({ message: error });
   }
 };
+const putActiviti = async (req, res) => {
+  const { id, name, difficulty, duration, season } = req.body;
+  try {
+    const putActivity = await putActivities(
+      id,
+      name,
+      difficulty,
+      duration,
+      season
+    );
+    if (!id) throw Error("the mandatory the id");
+    return res.status(200).json(putActivity);
+  } catch (error) {
+    res.status(400).send({ message: error });
+  }
+};
 
-module.exports = { getActiviti, postActiviti, getByIdAct };
+module.exports = { getActiviti, postActiviti, getByIdAct, putActiviti };

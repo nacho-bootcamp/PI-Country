@@ -50,5 +50,28 @@ const getByIdActiviti = async (id) => {
   return activity;
 };
 
+const putActivities = async (id, name, difficulty, duration, season) => {
+  const activity = await Activity.findOne({
+    where: {
+      id,
+    },
+  });
+
+  if (activity.error) activity;
+
+  activity.name = name || activity.name;
+  activity.difficulty = difficulty || activity.difficulty;
+  activity.duration = duration || activity.duration;
+  activity.season = season || activity.season;
+  console.log(activity);
+  await activity.save();
+  return activity;
+};
+
 // Exportar los métodos
-module.exports = { createActivity, getAllActivities, getByIdActiviti };
+module.exports = {
+  createActivity,
+  getAllActivities,
+  getByIdActiviti,
+  putActivities,
+};
