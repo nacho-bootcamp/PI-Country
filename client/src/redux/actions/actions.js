@@ -10,6 +10,4 @@ export const POPULATION = "POPULATION";
 // Activity
 
 export const GET_ACTIVITIES = "GET_ALL_ACTIVITIES";
-export const CREATE_ACTIVITY = "CREATE_NEW_ACTIVITY";
-export const LOADING_NEW_ACTIVITY = "LOADING_NEW_ACTIVITY";
 export const CLEAN = "CLEAN";

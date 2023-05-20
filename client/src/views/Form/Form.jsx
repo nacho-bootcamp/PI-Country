@@ -1,44 +1,81 @@
-import React, { useState } from "react";
-//import axios from "axios";
+import React, { useState, useEffect } from "react";
 import styles from "./Form.module.css";
-import { useSelector } from "react-redux";
-//import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { getCountries } from "../../redux/actions/countries";
+import { createActivities } from "../../redux/actions/activity";
 
 const Form = () => {
   const country = useSelector((state) => state.countries.countries);
-  //const dispatch = useDispatch();
-  // useEffect(() => {
-  //   dispatch
-  // }, []);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getCountries());
+  }, [dispatch]);
+
+  let countriesList = country.map((coun) => {
+    return {
+      name: coun.name,
+      flag: coun.flags,
+    };
+  });
 
   const [formData, setFormData] = useState({
     name: "",
     difficulty: 1,
-    duration: "",
+    duration: 0,
     season: "",
     countries: [],
   });
 
   const handleInputChange = (event) => {
-    const { name, value } = event.target;
-    setFormData((prevFormData) => ({ ...prevFormData, [name]: value }));
+    setFormData({
+      ...formData,
+      [event.target.name]: event.target.value,
+    });
   };
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    // axios
-    //   .post("http://localhost:3001/activities", formData)
-    //   .then((res) => alert("actividad creada"))
-    //   .catch((error) => alert("error al crear"));
-    console.log(formData);
-    // aquí puedes agregar la lógica para enviar los datos a la base de datos
+  const handleDifficultyChange = (event) => {
+    setFormData({
+      ...formData,
+      difficulty: parseInt(event.target.value),
+    });
   };
 
-  const handlerActivy = (event) => {
+  const handleDurationChange = (event) => {
+    const [hours, minutes] = event.target.value.split(":");
+    const durationInMinutes = parseInt(hours) * 60 + parseInt(minutes);
+
+    setFormData((prevFormData) => ({
+      ...prevFormData,
+      duration: durationInMinutes,
+    }));
+  };
+
+  const handleSeasonChange = (event) => {
+    setFormData({
+      ...formData,
+      season: event.target.value,
+    });
+  };
+
+  const handlerSelect = (event) => {
     setFormData({
       ...formData,
       countries: [...formData.countries, event.target.value],
     });
+  };
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    dispatch(createActivities(formData));
+    setFormData({
+      name: "",
+      difficulty: 1,
+      duration: 0,
+      season: "",
+      countries: [],
+    });
+    alert("creacion Exitosa");
   };
 
   return (
@@ -64,18 +101,22 @@ const Form = () => {
               min="1"
               max="5"
               value={formData.difficulty}
-              onChange={handleInputChange}
+              onChange={handleDifficultyChange}
             />
             <p>Difficulty level: {formData.difficulty}</p>
           </div>
           <div className={styles.field}>
-            <label htmlFor="duration">Duration</label>
+            <label htmlFor="duration">Duration:</label>
             <input
-              type="text"
+              type="time"
               name="duration"
+              min="01:00"
+              max="05:59"
               placeholder="Enter duration"
-              value={formData.duration}
-              onChange={handleInputChange}
+              value={
+                formData.duration === 0 ? "" : formatDuration(formData.duration)
+              }
+              onChange={handleDurationChange}
             />
           </div>
           <div className={styles.field}>
@@ -87,7 +128,7 @@ const Form = () => {
                 name="season"
                 value={"primavera"}
                 checked={formData.season === "primavera"}
-                onChange={handleInputChange}
+                onChange={handleSeasonChange}
               />
             </label>
             <label>
@@ -97,7 +138,7 @@ const Form = () => {
                 name="season"
                 value={"otoño"}
                 checked={formData.season === "otoño"}
-                onChange={handleInputChange}
+                onChange={handleSeasonChange}
               />
             </label>
             <label>
@@ -107,7 +148,7 @@ const Form = () => {
                 name="season"
                 value={"verano"}
                 checked={formData.season === "verano"}
-                onChange={handleInputChange}
+                onChange={handleSeasonChange}
               />
             </label>
             <label>
@@ -117,26 +158,25 @@ const Form = () => {
                 name="season"
                 value={"invierno"}
                 checked={formData.season === "invierno"}
-                onChange={handleInputChange}
+                onChange={handleSeasonChange}
               />
             </label>
           </div>
           <div className={styles.field}>
             <label htmlFor="countries">Countries</label>
-            <select
-              name="countries"
-              value={formData.countries}
-              onChange={handlerActivy}
-            >
-              <option value={""}>Select a country</option>
-              {country.map((element) => {
+            <select onChange={handlerSelect}>
+              <option>Select a country</option>
+              {countriesList.map((countri) => {
                 return (
-                  <option key={element.id} value={element.id}>
-                    {element.name}
+                  <option key={countri.id} value={countri.name}>
+                    {countri.name}
                   </option>
                 );
               })}
             </select>
+            <ul>
+              <li>{formData.countries.map((country) => country + " ,")}</li>
+            </ul>
           </div>
           <button className={styles.button}>Create Activity</button>
         </form>
@@ -144,5 +184,12 @@ const Form = () => {
     </div>
   );
 };
+function formatDuration(durationInMinutes) {
+  const hours = Math.floor(durationInMinutes / 60)
+    .toString()
+    .padStart(2, "0");
+  const minutes = (durationInMinutes % 60).toString().padStart(2, "0");
+  return `${hours}:${minutes}`;
+}
 
 export default Form;

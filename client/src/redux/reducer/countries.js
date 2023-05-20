@@ -8,7 +8,7 @@ import {
   POPULATION,
 } from "../actions/actions";
 
-const initialState = {
+export const initialState = {
   countries: [],
   allCountries: [],
   selectedCountry: {},

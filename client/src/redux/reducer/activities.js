@@ -1,41 +1,32 @@
-import {
-  CREATE_ACTIVITY,
-  CLEAN,
-  GET_ACTIVITIES,
-  FILTER,
-} from "../actions/actions";
+import { GET_ACTIVITIES, FILTER } from "../actions/actions";
+import { initialState as countriesInitialState } from "./countries";
 
 const initialState = {
+  allCountries: countriesInitialState.allCountries,
+  countries: countriesInitialState.countries,
   activities: [],
-  selectedActivity: "",
-  filteredActivities: [],
 };
 
 export const activity = (state = initialState, action) => {
   switch (action.type) {
     case GET_ACTIVITIES:
-      return { ...state, activities: { all: action.payload, loaded: true } };
-    case CREATE_ACTIVITY:
-      return action.payload.error
-        ? { ...state, newActivity: { created: false, info: action.payload } }
-        : { ...state, newActivity: { created: true, info: action.payload } };
-    case CLEAN:
-      return {
-        activities: { all: [], loaded: false },
-        newActivity: { created: false, info: "", error: "" },
-      };
+      return { ...state, activities: action.payload };
+
     case FILTER:
-      const filterAct =
-        action.payload === ""
-          ? state.activities
-          : state.activities.filter(
-              (activity) => activity.name === action.payload
+      const allActCountries = state.allCountries;
+      const actFilter =
+        action.payload === "All"
+          ? allActCountries.filter((el) => el.activities.length > 0)
+          : allActCountries.filter(
+              (el) =>
+                el.activities &&
+                el.activities.map((el) => el.name).includes(action.payload)
             );
       return {
         ...state,
-        selectedActivity: action.payload,
-        filteredActivities: filterAct,
+        countries: actFilter,
       };
+
     default:
       return state;
   }
