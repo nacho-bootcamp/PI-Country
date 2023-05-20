@@ -5,7 +5,7 @@ const getAllActivities = async () => {
   const allActivities = await Activity.findAll();
 
   // Verificar que existan actividades
-  if (!allActivities.length) throw Error("No existe ninguna actividad");
+  if (!allActivities.length) throw Error("There is no activity");
 
   // Devolver todas las actividades
   return allActivities;
@@ -21,7 +21,7 @@ const createActivity = async (
 ) => {
   // Verificar que se proporcionen todos los datos necesarios
   if (!name || !difficulty || !duration || !season || !countries)
-    throw Error("Falta información");
+    throw Error("Information is missing");
 
   // Crear la actividad en la base de datos
   const newActivity = await Activity.create({
@@ -57,7 +57,7 @@ const putActivities = async (id, name, difficulty, duration, season) => {
     },
   });
 
-  if (activity.error) activity;
+  if (activity.error) return activity;
 
   activity.name = name || activity.name;
   activity.difficulty = difficulty || activity.difficulty;
@@ -68,10 +68,17 @@ const putActivities = async (id, name, difficulty, duration, season) => {
   return activity;
 };
 
+const deleteActivity = async (id) => {
+  const activiti = await Activity.findByPk(id);
+
+  await activiti.destroy();
+};
+
 // Exportar los métodos
 module.exports = {
   createActivity,
   getAllActivities,
   getByIdActiviti,
   putActivities,
+  deleteActivity,
 };
