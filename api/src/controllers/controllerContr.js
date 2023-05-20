@@ -10,8 +10,7 @@ const getAllCountries = async (req, res) => {
     name: countryD.name.common,
     flag: countryD.flags[1],
     continent: countryD.continents[0],
-    capital:
-      countryD.capital != null ? countryD.capital[0] : "no tiene capital",
+    capital: countryD.capital != null ? countryD.capital[0] : "has no capital",
     subregion: countryD.subregion,
     area: countryD.area,
     population: countryD.population,
@@ -53,7 +52,7 @@ const getByName = async (name) => {
 
 // Obtiene un país por ID de la base de datos junto con las actividades asociadas
 const getById = async (id) => {
-  if (!id) throw Error(` el pais con ese ${id} no existe `);
+  if (!id) throw Error(` the country with that ${id} does not exist `);
 
   const countries = await Country.findOne({
     where: {

@@ -1,6 +1,7 @@
 const {
   createActivity,
   getAllActivities,
+  getByIdActiviti,
 } = require("../controllers/controllerAct");
 
 const getActiviti = async (req, res) => {
@@ -23,10 +24,20 @@ const postActiviti = async (req, res) => {
       season,
       countries
     );
-    return res.status(200).send("se creo exitosamente la actividad");
+    return res.status(200).send("the activity was created successfully");
   } catch (error) {
     res.status(500).send(error.message);
   }
 };
 
-module.exports = { getActiviti, postActiviti };
+const getByIdAct = async (req, res) => {
+  const { id } = req.params;
+  try {
+    const getActivity = await getByIdActiviti(id);
+    return res.status(200).json(getActivity);
+  } catch (error) {
+    res.status(500).send({ message: error });
+  }
+};
+
+module.exports = { getActiviti, postActiviti, getByIdAct };

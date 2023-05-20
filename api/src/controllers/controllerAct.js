@@ -40,5 +40,15 @@ const createActivity = async (
   await newActivity.addCountries(countriesList);
 };
 
+const getByIdActiviti = async (id) => {
+  if (!id) throw Error(`the activity with that ${id} does not exist`);
+  const activity = await Activity.findOne({
+    where: {
+      id,
+    },
+  });
+  return activity;
+};
+
 // Exportar los métodos
-module.exports = { createActivity, getAllActivities };
+module.exports = { createActivity, getAllActivities, getByIdActiviti };
