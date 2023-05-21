@@ -1,18 +1,24 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { getCountriesById, cleanId } from "../../redux/actions/countries";
 import styles from "./Detail.module.css";
+import Loading from "../../components/Loaders/Loaders";
 
 const Detail = () => {
   const { id } = useParams();
   const dispatch = useDispatch();
+
+  const [loading, setLoading] = useState(true);
+
   const selectedCountry = useSelector(
     (state) => state.countries.selectedCountry
   );
 
   useEffect(() => {
-    dispatch(getCountriesById(id));
+    dispatch(getCountriesById(id))
+      .then(() => setLoading(false))
+      .catch((error) => console.log(error));
 
     return () => dispatch(cleanId());
   }, [id, dispatch]);
@@ -22,20 +28,24 @@ const Detail = () => {
 
   return (
     <div>
-      <div className={styles.detail}>
-        <div className={styles.container}>
-          <h1 className={styles.title}>{name}</h1>
-          <img className={styles.image} src={flag} alt={name} />
-          <p className={styles.id}>{id}</p>
-          <p className={styles.text}>Capital: {capital}</p>
-          <p className={styles.text}>Continent: {continent}</p>
-          <p className={styles.text}>
-            SubRegion: {subregion ? subregion : "Has no Subregion"}
-          </p>
-          <p className={styles.text}>Area: {area ? area : "Has no area"}</p>
-          <p className={styles.text}>Population: {population}</p>
+      {!loading ? (
+        <div className={styles.detail}>
+          <div className={styles.container}>
+            <h1 className={styles.title}>{name}</h1>
+            <img className={styles.image} src={flag} alt={name} />
+            <p className={styles.id}>{id}</p>
+            <p className={styles.text}>Capital: {capital}</p>
+            <p className={styles.text}>Continent: {continent}</p>
+            <p className={styles.text}>
+              SubRegion: {subregion ? subregion : "Has no Subregion"}
+            </p>
+            <p className={styles.text}>Area: {area ? area : "Has no area"}</p>
+            <p className={styles.text}>Population: {population}</p>
+          </div>
         </div>
-      </div>
+      ) : (
+        <Loading />
+      )}
     </div>
   );
 };

@@ -1,12 +1,13 @@
 import React from "react";
+import styles from "./Loader.module.css";
 
-const Loaders = () => {
+const Loading = () => {
   return (
-    <div class="lds-ripple">
-      <div></div>
-      <div></div>
+    <div className={styles.loading}>
+      <div className={styles.spinner}></div>
+      <p className={styles.text}>Loading...</p>
     </div>
   );
 };
 
-export default Loaders;
+export default Loading;
