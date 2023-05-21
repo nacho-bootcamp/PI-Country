@@ -22,13 +22,13 @@ body {
 
 .back {
   background-color: rgba(0, 0, 0, 0.5);
-  height: 28rem;
+  height: 30rem;
   width: 60rem;
   text-align: center;
   border-radius: 20px;
 }
 
-h3 {
+.h3 {
   color: white;
   font-size: 18px;
   margin-bottom: 10px;
@@ -36,7 +36,7 @@ h3 {
   padding: 0 2rem;
 }
 
-h1 {
+.h1 {
   color: white;
   font-size: 36px;
   font-weight: bold;
@@ -52,12 +52,12 @@ ul {
   margin-bottom: 20px;
 }
 
-.li {
+li {
 
   margin-bottom: 5px;
 }
 
-button {
+.button {
   background-color: #ff440029;
   color: white;
   border: none;
@@ -69,6 +69,6 @@ button {
   font-family: 'Nunito', sans-serif;
 }
 
-button:hover {
+.button:hover {
   background-color: #ff5722;
 }

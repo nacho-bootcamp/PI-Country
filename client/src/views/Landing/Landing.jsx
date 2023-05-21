@@ -17,7 +17,7 @@ const Landing = () => {
             such as:
           </h3>
         </div>
-        <div className={styles.li}>
+        <div>
           <ul>
             <li>name</li>
             <li>capital</li>
@@ -28,9 +28,9 @@ const Landing = () => {
             <li>area</li>
           </ul>
         </div>
-        <div className={styles.button}>
+        <div>
           <Link to="/home">
-            <button>Start</button>
+            <button className={styles.button}>Start</button>
           </Link>
         </div>
       </div>

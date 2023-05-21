@@ -11,12 +11,15 @@ const Home = () => {
   const dispatch = useDispatch();
   const [loading, setLoading] = useState(true);
   useEffect(() => {
-    dispatch(getCountries());
-    setLoading(false);
+    setTimeout(() => {
+      dispatch(getCountries());
+      setLoading(false);
+    }, 1000);
+
     return () => dispatch(cleanId());
   }, [dispatch]);
   return (
-    <div>
+    <div className={styles.container}>
       {!loading ? (
         <div>
           <div className={styles.nav}>

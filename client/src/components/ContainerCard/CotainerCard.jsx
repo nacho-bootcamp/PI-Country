@@ -28,25 +28,27 @@ const ContainerCard = () => {
   return (
     <div>
       <Filter handlerCurrent={handlerCurrent} />
-      <div className={styles.container}>
-        {currentCountries.map((country) => (
-          <Card
-            key={country.id}
-            id={country.id}
-            name={country.name}
-            flag={country.flag}
-            continent={country.continent}
-          />
-        ))}
-      </div>
-      <div>
-        {currentCountries.length > 2 && (
-          <Pagination
-            itemsPerPage={itemsPerPage}
-            totalItems={countries.length}
-            paginate={paginate}
-          />
-        )}
+      <div className={styles.back}>
+        <div className={styles.container}>
+          {currentCountries.map((country) => (
+            <Card
+              key={country.id}
+              id={country.id}
+              name={country.name}
+              flag={country.flag}
+              continent={country.continent}
+            />
+          ))}
+        </div>
+        <div>
+          {currentCountries.length > 2 && (
+            <Pagination
+              itemsPerPage={itemsPerPage}
+              totalItems={countries.length}
+              paginate={paginate}
+            />
+          )}
+        </div>
       </div>
     </div>
   );

@@ -176,7 +176,7 @@ const Form = () => {
               <li>{formData.countries.map((country) => country + " ,")}</li>
             </ul>
           </div>
-          <div className={styles.button}>
+          <div>
             <button className={styles.button}>Create Activity</button>
           </div>
         </form>
