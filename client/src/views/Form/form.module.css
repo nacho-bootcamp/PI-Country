@@ -44,7 +44,7 @@ input[type="radio"] {
   margin-right: 10px;
 }
 
-button {
+.button {
   font-size: 18px;
   font-weight: bold;
   padding: 10px 20px;
@@ -56,6 +56,6 @@ button {
   margin-bottom: 2rem;
 }
 
-button:hover {
+.button:hover {
   background-color: #0062cc;
 }
