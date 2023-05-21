@@ -1,36 +1,25 @@
+@import url('https://fonts.googleapis.com/css2?family=Abel&family=Pangolin&display=swap');
+
 .filter {
   display: flex;
   gap: 20rem;
   padding: 0 2rem;
   text-align: center;
+
 }
 
-.card {
-  position: relative;
-  width: 300px;
-  height: 400px;
-  margin: 20px;
-  border-radius: 10px;
-  overflow: hidden;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
-  transition: transform 0.3s ease;
+.filter h3 {
+  font-family: 'Pangolin', cursive;
+  font-size: 25px;
 }
 
-.card:hover {
-  transform: translateY(-10px);
-}
-
-.card-content {
-  padding: 20px;
-}
-
-.card-title {
+.filter option {
+  font-family: 'Abel', sans-serif;
   font-size: 20px;
-  font-weight: 600;
-  margin-top: 50px;
-  transition: color 0.3s ease;
 }
 
-.card:hover .card-title {
-  color: #ff6b6b;
+.filter select {
+  font-family: 'Abel', sans-serif;
+  font-size: 19px;
+  cursor: pointer;
 }

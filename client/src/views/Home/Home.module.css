@@ -5,7 +5,7 @@
 }
 
 body {
-  background-image: url("../../assets/img/background.jpg");
+  background-image: url("../../assets/img/fondo.jpg");
   object-fit: cover;
   min-height: 100vh;
   background-repeat: no-repeat;

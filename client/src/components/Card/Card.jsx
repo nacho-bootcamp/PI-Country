@@ -4,18 +4,18 @@ import { Link } from "react-router-dom";
 
 const Card = ({ id, name, flag, continent }) => {
   return (
-    <Link to={`detail/${id}`}>
-      <div className={styles.card}>
-        <div className={styles.imgContainer}>
-          <img src={flag} alt={`${name} flag`} />
-        </div>
-        <div className={styles.infoContainer}>
-          <h4 className={styles.nameCountry}>{name}</h4>
-          <h4>Continent</h4>
-          <p>{continent}</p>
-        </div>
+    <div className={styles.card}>
+      <div>
+        <img className={styles.imgContainer} src={flag} alt={name} />
       </div>
-    </Link>
+      <div className={styles.infoContainer}>
+        <h1 className={styles.nameCountry}>{name}</h1>
+        <h2>Continent: {continent}</h2>
+      </div>
+      <Link className={styles.buttonContainer} to={`detail/${id}`}>
+        <button className={styles.button}>Readme more</button>
+      </Link>
+    </div>
   );
 };
 
