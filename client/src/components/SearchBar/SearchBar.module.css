@@ -1,0 +1,39 @@
+@import url('https://fonts.googleapis.com/css2?family=Pangolin&family=Ubuntu:ital,wght@1,300;1,400&display=swap');
+
+.button {
+  background-color: rgb(169, 217, 233);
+  height: 50px;
+  border-radius: 40px;
+  color: rgb(3, 3, 3);
+  font-family: 'Pangolin', cursive;
+  font-family: 'Ubuntu', sans-serif;
+  border: 0px;
+  border-radius: 0px 15px 15px 0px;
+  height: 37px;
+  border: 2px solid black;
+  text-align: center;
+  cursor: pointer;
+}
+
+.input {
+  border-radius: 15px 0px 0px 15px;
+  height: 18px;
+  width: 314px;
+  font-family: 'Pangolin', cursive;
+  font-family: 'Ubuntu', sans-serif;
+  text-align: center;
+  background-color: rgb(169, 217, 233);
+  border: 2px solid black;
+  padding-bottom: 6px;
+  padding-top: 11px;
+}
+
+.input::placeholder {
+  color: rgb(3, 3, 3);
+}
+
+.search {
+  height: 17px;
+  display: flex;
+  align-items: center;
+}

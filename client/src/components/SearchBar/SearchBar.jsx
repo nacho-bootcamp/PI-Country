@@ -2,6 +2,9 @@ import React from "react";
 import { useDispatch } from "react-redux";
 import { useState } from "react";
 import { getCountriesByName } from "../../redux/actions/countries";
+import seach from "../../assets/img/search.png";
+
+import styles from "./SearchBar.module.css";
 
 const SearchBar = () => {
   const dispatch = useDispatch();
@@ -19,9 +22,14 @@ const SearchBar = () => {
 
   return (
     <div>
-      <input type="text" placeholder="search country" onChange={handlerInput} />
-      <button onClick={handlerSubmit} type="submit">
-        Search
+      <input
+        className={styles.input}
+        type="text"
+        placeholder="Search Country..."
+        onChange={handlerInput}
+      />
+      <button className={styles.button} onClick={handlerSubmit} type="submit">
+        <img className={styles.search} src={seach} alt="" />
       </button>
     </div>
   );

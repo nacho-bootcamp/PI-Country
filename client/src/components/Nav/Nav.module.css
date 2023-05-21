@@ -1,18 +1,39 @@
+@import url('https://fonts.googleapis.com/css2?family=Pangolin&display=swap');
+
+
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: rgba(140, 189, 232, 0.5);
+  padding: 10px 40px;
+}
+
+
 .navbar {
   display: flex;
-  justify-content: space-evenly;
   align-items: center;
-  background-color: #f2f2f2;
-  padding: 10px;
+  gap: 200px;
 }
+
+.logo {
+  width: 100px;
+  height: 90px;
+}
+
 
 .link {
   text-decoration: none;
   color: black;
-  font-size: 18px;
+  font-size: 30px;
   margin: 0 10px;
+  font-family: 'Pangolin', cursive;
 }
 
 .link:hover {
   color: #ff4500;
+}
+
+.search {
+  padding-right: 70px;
 }
