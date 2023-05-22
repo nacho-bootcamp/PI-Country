@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Work+Sans:ital,wght@1,300&display=swap');
+
 .pagination {
   display: flex;
   list-style: none;
@@ -10,9 +12,11 @@
   cursor: pointer;
   padding: 5px 10px;
   border-radius: 5px;
-  background-color: #e0e0e0;
-  height: fit-content;
+  background-color: rgba(140, 189, 232, 0.5);
+  height: 20px;
   margin-top: 6px;
+  color: black;
+
 }
 
 .pageNumber:hover {
@@ -26,4 +30,21 @@
 
 .active:hover {
   background-color: #1976d2;
+}
+
+.navigationButton {
+  font-size: 18px;
+  font-weight: bold;
+  padding: 10px 20px;
+  border-radius: 5px;
+  border: none;
+  background-color: #007bff;
+  color: #fff;
+  cursor: pointer;
+  margin-bottom: 2rem;
+  font-family: 'Work Sans', sans-serif;
+}
+
+.navigationButton:hover {
+  background-color: #0062cc;
 }
