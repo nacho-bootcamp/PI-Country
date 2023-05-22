@@ -55,12 +55,8 @@ const Pagination = ({ itemsPerPage, totalItems, paginate }) => {
         </button>
       )}
       {renderPageNumbers()}
-      {currentPage < 25 && (
-        <button
-          className={styles.navigationButton}
-          disabled={currentPage === pageNumbers.length}
-          onClick={handleNext}
-        >
+      {currentPage < pageNumbers.length && (
+        <button className={styles.navigationButton} onClick={handleNext}>
           Next
         </button>
       )}
