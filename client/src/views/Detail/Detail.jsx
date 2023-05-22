@@ -31,16 +31,22 @@ const Detail = () => {
       {!loading ? (
         <div className={styles.detail}>
           <div className={styles.container}>
-            <h1 className={styles.title}>{name}</h1>
-            <img className={styles.image} src={flag} alt={name} />
-            <p className={styles.id}>{id}</p>
-            <p className={styles.text}>Capital: {capital}</p>
-            <p className={styles.text}>Continent: {continent}</p>
-            <p className={styles.text}>
-              SubRegion: {subregion ? subregion : "Has no Subregion"}
-            </p>
-            <p className={styles.text}>Area: {area ? area : "Has no area"}</p>
-            <p className={styles.text}>Population: {population}</p>
+            <div>
+              <img className={styles.image} src={flag} alt={name} />
+            </div>
+            <div>
+              <h1 className={styles.title}>{name}</h1>
+              <h2 className={styles.id}>Id: {id}</h2>
+              <h3 className={styles.text}>Capital: {capital}</h3>
+              <h3 className={styles.text}>Continent: {continent}</h3>
+              <h3 className={styles.text}>
+                SubRegion: {subregion ? subregion : "Has no Subregion"}
+              </h3>
+              <h3 className={styles.text}>
+                Area: {area ? area : "Has no area"}
+              </h3>
+              <h3 className={styles.text}>Population: {population}</h3>
+            </div>
           </div>
         </div>
       ) : (

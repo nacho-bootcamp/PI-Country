@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Playfair+Display:ital@1&display=swap');
+
 .detail {
   display: flex;
   justify-content: center;
@@ -5,26 +7,27 @@
 }
 
 .container {
-  background-color: #f2f2f2;
+  background-color: rgba(140, 189, 232, 0.5);
+  border: 2px solid black;
   padding: 20px;
   border-radius: 10px;
   display: flex;
-  flex-direction: column;
+  gap: 100px;
   justify-content: center;
   align-items: center;
-  width: fit-content;
+
 }
 
 .title {
-  font-size: 32px;
+  font-size: 40px;
   font-weight: bold;
   margin-bottom: 20px;
+  font-family: 'Bebas Neue', sans-serif;
 }
 
 .image {
-  width: 200px;
-  height: 150px;
-  object-fit: cover;
+  width: 400px;
+  height: 300px;
   margin-bottom: 20px;
 }
 
@@ -34,8 +37,9 @@
 }
 
 .text {
-  font-size: 16px;
+  font-size: 20px;
   margin-bottom: 10px;
+  font-family: 'Playfair Display', serif;
 }
 
 .text:last-child {
