@@ -1,3 +1,6 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Playfair+Display:ital@1&display=swap');
+
+
 .container {
   display: flex;
   justify-content: center;
@@ -5,7 +8,7 @@
   margin-top: 7em;
   border: solid 2px black;
   width: 380px;
-  background-color: rgb(5, 7, 12, 0.5);
+  background-color: rgba(140, 189, 232, 0.5);
   border-radius: 8px;
 }
 
@@ -14,16 +17,43 @@
   justify-content: center;
 }
 
+.season {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  font-family: 'Playfair Display', serif;
+}
+
+.text {
+  text-align: center;
+  margin-bottom: 10px;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 20px;
+}
 
 
 .field {
   display: flex;
   flex-direction: column;
+  margin-bottom: 10px;
+  font-family: 'Playfair Display', serif;
+  font-size: 20px;
+}
+
+
+.field input {
+  font-family: 'Playfair Display', serif;
+  font-size: 20px;
+}
+
+.field select {
+  font-family: 'Playfair Display', serif;
   margin-bottom: 20px;
 }
 
 .text {
   text-align: center;
+  padding-top: 10px;
 }
 
 label {
@@ -44,6 +74,11 @@ input[type="radio"] {
   margin-right: 10px;
 }
 
+.containerBtn {
+  display: flex;
+  justify-content: center;
+}
+
 .button {
   font-size: 18px;
   font-weight: bold;
@@ -54,6 +89,8 @@ input[type="radio"] {
   color: #fff;
   cursor: pointer;
   margin-bottom: 2rem;
+  font-family: 'Playfair Display', serif;
+
 }
 
 .button:hover {

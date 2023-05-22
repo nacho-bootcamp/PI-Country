@@ -44,7 +44,7 @@ body {
   font-family: 'Nunito', sans-serif;
 }
 
-ul {
+.ul {
   color: white;
   list-style-type: none;
   margin: 0;

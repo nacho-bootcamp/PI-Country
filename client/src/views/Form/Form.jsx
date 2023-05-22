@@ -80,20 +80,25 @@ const Form = () => {
   return (
     <div className={styles.form}>
       <div className={styles.container}>
+        <img src="" alt="" />
         <form onSubmit={handleSubmit}>
           <h2 className={styles.text}>Create Activities</h2>
           <div className={styles.field}>
-            <label htmlFor="name">Name</label>
+            <label htmlFor="name" className={styles.text}>
+              Name of the Activity
+            </label>
             <input
               type="text"
               name="name"
-              placeholder="Enter name"
+              placeholder="Name of the Activity..."
               value={formData.name}
               onChange={handleInputChange}
             />
           </div>
           <div className={styles.field}>
-            <label htmlFor="difficulty">Difficulty</label>
+            <label htmlFor="difficulty" className={styles.text}>
+              Difficulty
+            </label>
             <input
               type="range"
               name="difficulty"
@@ -105,7 +110,9 @@ const Form = () => {
             <p>Difficulty level: {formData.difficulty}</p>
           </div>
           <div className={styles.field}>
-            <label htmlFor="duration">Duration:</label>
+            <label htmlFor="duration" className={styles.text}>
+              Duration:
+            </label>
             <input
               type="number"
               name="duration"
@@ -115,8 +122,8 @@ const Form = () => {
               onChange={handleDurationChange}
             />
           </div>
-          <div className={styles.field}>
-            <legend>Season</legend>
+          <legend className={styles.text}>Season</legend>
+          <div className={styles.season}>
             <label>
               Spring
               <input
@@ -160,23 +167,25 @@ const Form = () => {
             </label>
           </div>
           <div className={styles.field}>
-            <label htmlFor="countries">Countries</label>
+            <label htmlFor="countries" className={styles.text}>
+              Countries
+            </label>
             <select onChange={handlerSelect}>
               <option>Select a country</option>
 
               {countriesList.map((countri) => {
                 return (
-                  <option key={countri.id} value={countri.id} id="country">
+                  <option key={countri.id} value={countri.id}>
                     {countri.name}
                   </option>
                 );
               })}
             </select>
             <ul>
-              <li>{formData.countries.map((country) => country + " ,")}</li>
+              <li>{formData.countries.map((country) => country + " , ")}</li>
             </ul>
           </div>
-          <div>
+          <div className={styles.containerBtn}>
             <button className={styles.button}>Create Activity</button>
           </div>
         </form>

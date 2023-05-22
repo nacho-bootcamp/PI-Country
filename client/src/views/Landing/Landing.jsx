@@ -18,7 +18,7 @@ const Landing = () => {
           </h3>
         </div>
         <div>
-          <ul>
+          <ul className={styles.ul}>
             <li>name</li>
             <li>capital</li>
             <li>flag</li>
