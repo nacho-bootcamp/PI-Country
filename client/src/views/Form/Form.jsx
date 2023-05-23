@@ -78,7 +78,20 @@ const Form = () => {
     });
     alert("creacion Exitosa");
   };
-  console.log(countriesList);
+
+  const isFormValid = () => {
+    if (
+      formData.name === "" ||
+      formData.difficulty === 0 ||
+      formData.duration === 0 ||
+      formData.season === "" ||
+      formData.countries.length === 0
+    )
+      return true;
+    else {
+      return false;
+    }
+  };
   return (
     <div className={styles.form}>
       <div className={styles.container}>
@@ -197,7 +210,9 @@ const Form = () => {
             </ul>
           </div>
           <div className={styles.containerBtn}>
-            <button className={styles.button}>Create Activity</button>
+            <button className={styles.button} disabled={isFormValid()}>
+              Create Activity
+            </button>
           </div>
         </form>
       </div>
