@@ -1,4 +1,4 @@
-import { GET_ACTIVITIES, FILTER } from "../actions/actions";
+import { GET_ACTIVITIES, FILTER, POST } from "../actions/actions";
 import { initialState as countriesInitialState } from "./countries";
 
 const initialState = {
@@ -13,18 +13,24 @@ export const activity = (state = initialState, action) => {
       return { ...state, activities: action.payload };
 
     case FILTER:
-      const allActCountries = state.allCountries;
-      const actFilter =
-        action.payload === "All"
-          ? allActCountries.filter((el) => el.activities.length > 0)
-          : allActCountries.filter(
-              (el) =>
-                el.activities &&
-                el.activities.map((el) => el.name).includes(action.payload)
-            );
+      const filtredCountriesByActivities = state.allCountries;
+      const continentFilteredBA = filtredCountriesByActivities.filter((c) => {
+        return c.activities.find((c) => {
+          return c.name === action.payload;
+        });
+      });
+
+      if (action.payload === "todos") {
+        return { ...state, countries: filtredCountriesByActivities };
+      } else {
+        return {
+          ...state,
+          countries: continentFilteredBA,
+        };
+      }
+    case POST:
       return {
         ...state,
-        countries: actFilter,
       };
 
     default:

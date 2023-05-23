@@ -1,5 +1,5 @@
 import axios from "axios";
-import { CLEAN, GET_ACTIVITIES, FILTER } from "./actions";
+import { CLEAN, GET_ACTIVITIES, FILTER_BY_ACT, POST } from "./actions";
 
 export const getActivities = () => {
   return async function (dispatch) {
@@ -9,13 +9,16 @@ export const getActivities = () => {
   };
 };
 export const filterActivity = (payload) => ({
-  type: FILTER,
-  payload: payload,
+  type: FILTER_BY_ACT,
+  payload,
 });
-export const createActivities = (data) => {
+export const createActivities = (payload) => {
   return async function (dispatch) {
-    const response = await axios.post("http://localhost:3001/activities", data);
-    return response;
+    const response = await axios.post(
+      "http://localhost:3001/activities",
+      payload
+    );
+    dispatch({ type: POST, payload: response.data });
   };
 };
 
