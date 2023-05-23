@@ -12,11 +12,10 @@ const Filter = ({ handlerCurrent }) => {
   const dispatch = useDispatch();
   const [order, setOrder] = useState("");
 
-  // const activity = useSelector((state) => state.activities.countries);
-
   useEffect(() => {
     dispatch(getActivities());
   }, [dispatch]);
+  const activity = useSelector((state) => state.activity.activities);
 
   const handlerFilter = (event) => {
     dispatch(filterCountries(event.target.value));
@@ -72,9 +71,9 @@ const Filter = ({ handlerCurrent }) => {
         <h3>Activities</h3>
         <select onChange={handlerAct}>
           <option value="All">All</option>
-          {/* {activity.map((act) => {
-            return <option value={act.name}>{act.name}</option>;
-          })} */}
+          {activity.map((act) => {
+            return <option value={act.id}>{act?.name}</option>;
+          })}
         </select>
       </div>
     </div>
