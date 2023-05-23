@@ -3,6 +3,7 @@ import styles from "./Form.module.css";
 import { useDispatch, useSelector } from "react-redux";
 import { getCountries } from "../../redux/actions/countries";
 import { createActivities } from "../../redux/actions/activity";
+import validation from "./validate";
 
 const Form = () => {
   const country = useSelector((state) => state.countries.countries);
@@ -16,52 +17,53 @@ const Form = () => {
     return {
       id: coun.id,
       name: coun.name,
-      flag: coun.flags,
     };
   });
 
   const [formData, setFormData] = useState({
     name: "",
-    difficulty: 1,
-    duration: 1,
+    difficulty: 0,
+    duration: 0,
     season: "",
     countries: [],
   });
-  console.log(formData);
+
+  const [error, setError] = useState({
+    name: "",
+    difficulty: 0,
+    duration: 0,
+    season: "",
+    countries: [],
+  });
 
   const handleInputChange = (event) => {
     setFormData({
       ...formData,
       [event.target.name]: event.target.value,
     });
-  };
-
-  const handleDifficultyChange = (event) => {
-    setFormData({
-      ...formData,
-      difficulty: parseInt(event.target.value),
-    });
-  };
-
-  const handleDurationChange = (event) => {
-    setFormData({
-      ...formData,
-      [event.target.name]: parseInt(event.target.value),
-    });
-  };
-
-  const handleSeasonChange = (event) => {
-    setFormData({
-      ...formData,
-      season: event.target.value,
-    });
+    setError(
+      validation({
+        ...formData,
+        [event.target.name]: event.target.value,
+      })
+    );
   };
 
   const handlerSelect = (event) => {
-    setFormData({
-      ...formData,
-      countries: [...formData.countries, event.target.value],
-    });
+    if (formData.countries.length > 4) {
+      setFormData({ ...formData, countries: [] });
+    } else {
+      setFormData({
+        ...formData,
+        countries: [...formData.countries, event.target.value],
+      });
+    }
+    setError(
+      validation({
+        ...formData,
+        [event.target.name]: event.target.value,
+      })
+    );
   };
 
   const handleSubmit = (event) => {
@@ -69,8 +71,8 @@ const Form = () => {
     dispatch(createActivities(formData));
     setFormData({
       name: "",
-      difficulty: 1,
-      duration: 1,
+      difficulty: 0,
+      duration: 0,
       season: "",
       countries: [],
     });
@@ -94,6 +96,7 @@ const Form = () => {
               value={formData.name}
               onChange={handleInputChange}
             />
+            {error.name && <p className={styles.error}>{error.name}</p>}
           </div>
           <div className={styles.field}>
             <label htmlFor="difficulty" className={styles.text}>
@@ -105,8 +108,11 @@ const Form = () => {
               min="1"
               max="5"
               value={formData.difficulty}
-              onChange={handleDifficultyChange}
+              onChange={handleInputChange}
             />
+            {error.difficulty && (
+              <p className={styles.error}>{error.difficulty}</p>
+            )}
             <p>Difficulty level: {formData.difficulty}</p>
           </div>
           <div className={styles.field}>
@@ -117,10 +123,11 @@ const Form = () => {
               type="number"
               name="duration"
               max="24"
-              min="1"
+              min="0"
               value={formData.duration}
-              onChange={handleDurationChange}
+              onChange={handleInputChange}
             />
+            {error.duration && <p className={styles.error}>{error.duration}</p>}
           </div>
           <legend className={styles.text}>Season</legend>
           <div className={styles.season}>
@@ -131,7 +138,7 @@ const Form = () => {
                 name="season"
                 value={"Spring"}
                 checked={formData.season === "Spring"}
-                onChange={handleSeasonChange}
+                onChange={handleInputChange}
               />
             </label>
 
@@ -142,7 +149,7 @@ const Form = () => {
                 name="season"
                 value={"Autumn"}
                 checked={formData.season === "Autumn"}
-                onChange={handleSeasonChange}
+                onChange={handleInputChange}
               />
             </label>
             <label>
@@ -152,7 +159,7 @@ const Form = () => {
                 name="season"
                 value={"Summer"}
                 checked={formData.season === "Summer"}
-                onChange={handleSeasonChange}
+                onChange={handleInputChange}
               />
             </label>
             <label>
@@ -162,10 +169,11 @@ const Form = () => {
                 name="season"
                 value={"Winter"}
                 checked={formData.season === "Winter"}
-                onChange={handleSeasonChange}
+                onChange={handleInputChange}
               />
             </label>
           </div>
+          {error.season && <p className={styles.error}>{error.season}</p>}
           <div className={styles.field}>
             <label htmlFor="countries" className={styles.text}>
               Countries
@@ -181,6 +189,9 @@ const Form = () => {
                 );
               })}
             </select>
+            {error.countries && (
+              <p className={styles.error}>{error.countries}</p>
+            )}
             <ul>
               <li>{formData.countries.map((country) => country + " , ")}</li>
             </ul>

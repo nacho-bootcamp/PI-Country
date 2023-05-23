@@ -5,9 +5,9 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: 7em;
+  margin-top: 50px;
   border: solid 2px black;
-  width: 380px;
+  width: 450px;
   background-color: rgba(140, 189, 232, 0.5);
   border-radius: 8px;
 }
@@ -15,6 +15,7 @@
 .form {
   display: flex;
   justify-content: center;
+  text-align: center;
 }
 
 .season {
@@ -35,6 +36,7 @@
 .field {
   display: flex;
   flex-direction: column;
+  align-items: center;
   margin-bottom: 10px;
   font-family: 'Playfair Display', serif;
   font-size: 20px;
@@ -44,6 +46,7 @@
 .field input {
   font-family: 'Playfair Display', serif;
   font-size: 20px;
+  width: 370px;
 }
 
 .field select {
@@ -95,4 +98,10 @@ input[type="radio"] {
 
 .button:hover {
   background-color: #0062cc;
+}
+
+.error {
+  font-family: 'Playfair Display', serif;
+
+  color: red;
 }
