@@ -48,6 +48,11 @@ export const countries = (state = initialState, action) => {
 
     case ORDER:
       let orderedCountries;
+      const orderCountries = state.allCountries;
+
+      if (action.payload === "All") {
+        orderedCountries = orderCountries;
+      }
       if (action.payload === "Ascendente") {
         orderedCountries = [...state.countries].sort((a, b) =>
           a.name.localeCompare(b.name)
@@ -65,6 +70,10 @@ export const countries = (state = initialState, action) => {
 
     case POPULATION:
       let populations;
+      const populationCountry = state.allCountries;
+      if (action.payload === "All") {
+        populations = populationCountry;
+      }
       if (action.payload === "Mayor") {
         populations = [...state.countries].sort(
           (a, b) => b.population - a.population

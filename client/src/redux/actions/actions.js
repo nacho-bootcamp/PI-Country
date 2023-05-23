@@ -12,3 +12,4 @@ export const POPULATION = "POPULATION";
 export const GET_ACTIVITIES = "GET_ALL_ACTIVITIES";
 export const CLEAN = "CLEAN";
 export const POST = "POST";
+export const FILTER_BY_ACT = "FILTER_BY_ACT";

@@ -1,15 +1,22 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styles from "./Filter.module.css";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import {
   filterCountries,
   orderName,
   orderPopulation,
 } from "../../redux/actions/countries";
+import { filterActivity, getActivities } from "../../redux/actions/activity";
 
 const Filter = ({ handlerCurrent }) => {
   const dispatch = useDispatch();
   const [order, setOrder] = useState("");
+
+  // const activity = useSelector((state) => state.activities.countries);
+
+  useEffect(() => {
+    dispatch(getActivities());
+  }, [dispatch]);
 
   const handlerFilter = (event) => {
     dispatch(filterCountries(event.target.value));
@@ -25,6 +32,10 @@ const Filter = ({ handlerCurrent }) => {
     dispatch(orderPopulation(event.target.value));
     handlerCurrent();
     setOrder(event.target.value);
+  };
+
+  const handlerAct = (event) => {
+    dispatch(filterActivity(event.target.value));
   };
   return (
     <div className={styles.filter}>
@@ -44,6 +55,7 @@ const Filter = ({ handlerCurrent }) => {
       <div>
         <h3>Order:</h3>
         <select value={order} onChange={handlerOrder}>
+          <option value="All">seleccionar</option>
           <option value="Ascendente">Ascendente</option>
           <option value="Descendente">Descendente</option>
         </select>
@@ -51,8 +63,18 @@ const Filter = ({ handlerCurrent }) => {
       <div>
         <h3>Population:</h3>
         <select onChange={handlerPopulation}>
+          <option value="All">seleccionar</option>
           <option value="Mayor">Mayor</option>
           <option value="Menor">Menor</option>
+        </select>
+      </div>
+      <div>
+        <h3>Activities</h3>
+        <select onChange={handlerAct}>
+          <option value="All">All</option>
+          {/* {activity.map((act) => {
+            return <option value={act.name}>{act.name}</option>;
+          })} */}
         </select>
       </div>
     </div>
