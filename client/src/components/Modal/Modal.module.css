@@ -35,3 +35,22 @@
   font-size: 16px;
   color: rgb(19, 221, 19);
 }
+
+.Btn{
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  width: 30px;
+  height: 30px;
+  border: none;
+  background: none;
+  cursor: pointer;
+  transition: .3s ease all;
+  border-radius: 5px;
+  color : #1766DC
+}
+
+.Btn:hover{
+  background: #f2f2f2;
+}
+
