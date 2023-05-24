@@ -7,7 +7,10 @@ import Pagination from "../Paginado/Paginado";
 import Filter from "../Filter/Filter";
 
 const ContainerCard = () => {
-  const countries = useSelector((state) => state.countries.countries);
+  const countries = useSelector((state) => {
+    console.log(state);
+    return state.countries.countries;
+  });
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 10;
 

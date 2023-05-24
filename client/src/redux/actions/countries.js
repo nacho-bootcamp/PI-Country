@@ -7,6 +7,7 @@ import {
   FILTER,
   ORDER,
   POPULATION,
+  FILTER_BY_ACTIVITY,
 } from "./actions";
 
 export const getCountries = () => {
@@ -52,6 +53,14 @@ export const filterCountries = (continent) => {
     payload: continent,
   };
 };
+
+export const filterCountriesByActivity = (activity) => {
+  return {
+    type: FILTER_BY_ACTIVITY,
+    payload: activity,
+  };
+};
+
 export const orderName = (name) => {
   return {
     type: ORDER,

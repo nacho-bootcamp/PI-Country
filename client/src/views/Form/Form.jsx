@@ -6,6 +6,7 @@ import { createActivities } from "../../redux/actions/activity";
 import validation from "./validate";
 import Modal from "../../components/Modal/Modal";
 import check from "../../assets/img/check.png";
+import axios from "axios";
 
 const Form = () => {
   const country = useSelector((state) => state.countries.countries);
@@ -69,16 +70,14 @@ const Form = () => {
     );
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    dispatch(createActivities(formData));
-    setFormData({
-      name: "",
-      difficulty: 0,
-      duration: 0,
-      season: "",
-      countries: [],
-    });
+    try {
+      await axios.post("http://localhost:3001/activities", formData);
+      alert("creado");
+    } catch (error) {
+      alert("error");
+    }
   };
 
   const isFormValid = () => {

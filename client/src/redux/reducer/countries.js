@@ -6,6 +6,7 @@ import {
   FILTER,
   ORDER,
   POPULATION,
+  FILTER_BY_ACTIVITY,
 } from "../actions/actions";
 
 export const initialState = {
@@ -44,6 +45,25 @@ export const countries = (state = initialState, action) => {
       return {
         ...state,
         countries: countriesFilt,
+      };
+    case FILTER_BY_ACTIVITY:
+      if (action.payload === "All") {
+        return { ...state, countries: state.allCountries };
+      }
+      const countriesFilterByActivity = [];
+
+      state.allCountries.forEach((country) => {
+        const countryFilter = country.Activities.filter(
+          (activity) => activity.name === action.payload
+        );
+        if (countryFilter.length) {
+          countriesFilterByActivity.push(country);
+        }
+      });
+
+      return {
+        ...state,
+        countries: countriesFilterByActivity,
       };
 
     case ORDER:

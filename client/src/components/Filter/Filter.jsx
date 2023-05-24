@@ -3,10 +3,11 @@ import styles from "./Filter.module.css";
 import { useDispatch, useSelector } from "react-redux";
 import {
   filterCountries,
+  filterCountriesByActivity,
   orderName,
   orderPopulation,
 } from "../../redux/actions/countries";
-import { filterActivity, getActivities } from "../../redux/actions/activity";
+import { getActivities } from "../../redux/actions/activity";
 
 const Filter = ({ handlerCurrent }) => {
   const dispatch = useDispatch();
@@ -34,7 +35,7 @@ const Filter = ({ handlerCurrent }) => {
   };
 
   const handlerAct = (event) => {
-    dispatch(filterActivity(event.target.value));
+    dispatch(filterCountriesByActivity(event.target.value));
   };
   return (
     <div className={styles.filter}>
@@ -72,7 +73,11 @@ const Filter = ({ handlerCurrent }) => {
         <select onChange={handlerAct}>
           <option value="All">All</option>
           {activity.map((act) => {
-            return <option value={act.id}>{act?.name}</option>;
+            return (
+              <option value={act.name} key={act.id}>
+                {act.name}
+              </option>
+            );
           })}
         </select>
       </div>
