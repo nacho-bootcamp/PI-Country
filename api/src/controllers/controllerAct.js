@@ -2,7 +2,9 @@ const { Activity, Country } = require("../database/db");
 
 // Obtener todas las actividades
 const getAllActivities = async () => {
-  const allActivities = await Activity.findAll();
+  const allActivities = await Activity.findAll({
+    include: [{ model: Country, attributes: ["name", "continent"] }],
+  });
 
   // Verificar que existan actividades
   if (!allActivities.length) throw Error("There is no activity");
