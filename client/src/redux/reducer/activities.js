@@ -1,4 +1,4 @@
-import { GET_ACTIVITIES, POST } from "../actions/actions";
+import { GET_ACTIVITIES } from "../actions/actions";
 
 const initialState = {
   activities: [],
@@ -10,10 +10,6 @@ export const activity = (state = initialState, action) => {
       return {
         ...state,
         activities: action.payload,
-      };
-    case POST:
-      return {
-        ...state,
       };
 
     default:

@@ -78,9 +78,9 @@ const Form = () => {
         season: "",
         countries: [],
       });
-      alert("creacion exitosa");
+      alert("Creacion Exitosa ");
     } catch (error) {
-      alert("error");
+      alert("Esta actividad ya esta creada");
     }
   };
 

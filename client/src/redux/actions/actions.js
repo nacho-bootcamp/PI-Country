@@ -12,4 +12,3 @@ export const FILTER_BY_ACTIVITY = "FILTER_BY_ACTIVITY";
 
 export const GET_ACTIVITIES = "GET_ALL_ACTIVITIES";
 export const CLEAN = "CLEAN";
-export const POST = "POST";
