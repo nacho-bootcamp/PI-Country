@@ -108,6 +108,7 @@ const Form = () => {
               Name of the Activity
             </label>
             <input
+              autoComplete="off"
               type="text"
               name="name"
               placeholder="Name of the Activity..."

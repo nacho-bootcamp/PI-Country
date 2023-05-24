@@ -1,7 +1,6 @@
 import { Link } from "react-router-dom";
 import styles from "./Nav.module.css";
 import nav from "../../assets/img/nav.png";
-import SearchBar from "../../components/SearchBar/SearchBar";
 
 const Nav = () => {
   return (
@@ -16,9 +15,6 @@ const Nav = () => {
         <Link to="/create" className={styles.link}>
           Form
         </Link>
-      </div>
-      <div className={styles.search}>
-        <SearchBar />
       </div>
     </div>
   );

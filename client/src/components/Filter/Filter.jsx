@@ -9,7 +9,7 @@ import {
 } from "../../redux/actions/countries";
 import { getActivities } from "../../redux/actions/activity";
 
-const Filter = ({ handlerCurrent }) => {
+const Filter = () => {
   const dispatch = useDispatch();
   const [order, setOrder] = useState("");
 
@@ -24,13 +24,11 @@ const Filter = ({ handlerCurrent }) => {
 
   const handlerOrder = (event) => {
     dispatch(orderName(event.target.value));
-    handlerCurrent();
     setOrder(event.target.value);
   };
 
   const handlerPopulation = (event) => {
     dispatch(orderPopulation(event.target.value));
-    handlerCurrent();
     setOrder(event.target.value);
   };
 
@@ -49,6 +47,7 @@ const Filter = ({ handlerCurrent }) => {
           <option value="Asia">Asia</option>
           <option value="Europe">Europe</option>
           <option value="Oceania">Oceania</option>
+          <option value="Antarctica">Antarctica</option>
         </select>
       </div>
 
