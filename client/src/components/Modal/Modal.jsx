@@ -1,5 +1,6 @@
 import React from "react";
 import styles from "./Modal.module.css";
+import delet from "../../assets/img/delete.png";
 
 const Modal = ({ children, modal, setModal }) => {
   return (
@@ -7,11 +8,8 @@ const Modal = ({ children, modal, setModal }) => {
       {modal && (
         <div className={styles.Overlay}>
           <div className={styles.Container}>
-            <div className={styles.Encabezado}>
-              <h3>TITULO</h3>
-            </div>
             <div onClick={() => setModal(!modal)} className={styles.Btn}>
-              x
+              <img className={styles.img} src={delet} alt="" />
             </div>
             {children}
           </div>

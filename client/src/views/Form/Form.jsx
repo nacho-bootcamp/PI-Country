@@ -4,6 +4,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { getCountries } from "../../redux/actions/countries";
 import { createActivities } from "../../redux/actions/activity";
 import validation from "./validate";
+import Modal from "../../components/Modal/Modal";
+import check from "../../assets/img/check.png";
 
 const Form = () => {
   const country = useSelector((state) => state.countries.countries);
@@ -19,6 +21,7 @@ const Form = () => {
       name: coun.name,
     };
   });
+  const [modal, setModal] = useState(false);
 
   const [formData, setFormData] = useState({
     name: "",
@@ -76,7 +79,6 @@ const Form = () => {
       season: "",
       countries: [],
     });
-    alert("creacion Exitosa");
   };
 
   const isFormValid = () => {
@@ -210,12 +212,20 @@ const Form = () => {
             </ul>
           </div>
           <div className={styles.containerBtn}>
-            <button className={styles.button} disabled={isFormValid()}>
+            <button
+              onClick={() => setModal(!modal)}
+              className={styles.button}
+              disabled={isFormValid()}
+            >
               Create Activity
             </button>
           </div>
         </form>
       </div>
+      <Modal className={styles.modal} modal={modal} setModal={setModal}>
+        <h1 className={styles.h1}>Successfully Created</h1>
+        <img className={styles.imgModal} src={check} alt="" />
+      </Modal>
     </div>
   );
 };
