@@ -79,8 +79,9 @@ export const countries = (state = initialState, action) => {
         );
       }
       if (action.payload === "Descendente") {
-        orderedCountries = [...state.countries].sort((a, b) =>
-          b.name.localeCompare(a.name)
+        orderedCountries = [...state.countries].sort(
+          (a, b) => b.name.localeCompare(a.name)
+          //se compara dos cadenas de texto
         );
       }
       return {
