@@ -2,10 +2,8 @@ import React, { useState, useEffect } from "react";
 import styles from "./Form.module.css";
 import { useDispatch, useSelector } from "react-redux";
 import { getCountries } from "../../redux/actions/countries";
-import { createActivities } from "../../redux/actions/activity";
 import validation from "./validate";
-import Modal from "../../components/Modal/Modal";
-import check from "../../assets/img/check.png";
+
 import axios from "axios";
 
 const Form = () => {
@@ -22,7 +20,6 @@ const Form = () => {
       name: coun.name,
     };
   });
-  const [modal, setModal] = useState(false);
 
   const [formData, setFormData] = useState({
     name: "",
@@ -74,7 +71,14 @@ const Form = () => {
     event.preventDefault();
     try {
       await axios.post("http://localhost:3001/activities", formData);
-      alert("creado");
+      setFormData({
+        name: "",
+        difficulty: 0,
+        duration: 0,
+        season: "",
+        countries: [],
+      });
+      alert("creacion exitosa");
     } catch (error) {
       alert("error");
     }
@@ -211,20 +215,12 @@ const Form = () => {
             </ul>
           </div>
           <div className={styles.containerBtn}>
-            <button
-              onClick={() => setModal(!modal)}
-              className={styles.button}
-              disabled={isFormValid()}
-            >
+            <button className={styles.button} disabled={isFormValid()}>
               Create Activity
             </button>
           </div>
         </form>
       </div>
-      <Modal className={styles.modal} modal={modal} setModal={setModal}>
-        <h1 className={styles.h1}>Successfully Created</h1>
-        <img className={styles.imgModal} src={check} alt="" />
-      </Modal>
     </div>
   );
 };
