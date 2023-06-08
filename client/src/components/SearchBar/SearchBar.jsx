@@ -6,7 +6,7 @@ import seach from "../../assets/img/search.png";
 
 import styles from "./SearchBar.module.css";
 
-const SearchBar = () => {
+const SearchBar = ({ handlerSear }) => {
   const dispatch = useDispatch();
 
   const [name, setName] = useState("");
@@ -17,11 +17,12 @@ const SearchBar = () => {
 
   const handlerSubmit = (event) => {
     event.preventDefault();
+    handlerSear();
     dispatch(getCountriesByName(name));
   };
 
   return (
-    <div>
+    <div className={styles.container}>
       <input
         className={styles.input}
         type="text"

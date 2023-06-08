@@ -9,7 +9,7 @@ import {
 } from "../../redux/actions/countries";
 import { getActivities } from "../../redux/actions/activity";
 
-const Filter = () => {
+const Filter = ({ handlerSear }) => {
   const dispatch = useDispatch();
   const [order, setOrder] = useState("");
 
@@ -19,6 +19,7 @@ const Filter = () => {
   const activity = useSelector((state) => state.activity.activities);
 
   const handlerFilter = (event) => {
+    handlerSear();
     dispatch(filterCountries(event.target.value));
   };
 

@@ -25,10 +25,14 @@ const ContainerCard = () => {
     setCurrentPage(pageNumber);
   };
 
+  const handlerSear = () => {
+    setCurrentPage(1);
+  };
+
   return (
     <div>
-      <SearchBar />
-      <Filter />
+      <SearchBar handlerSear={handlerSear} />
+      <Filter handlerSear={handlerSear} />
       <div className={styles.back}>
         <div className={styles.container}>
           {currentCountries.map((country) => (

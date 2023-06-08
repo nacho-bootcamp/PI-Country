@@ -1,5 +1,11 @@
 @import url('https://fonts.googleapis.com/css2?family=Pangolin&family=Ubuntu:ital,wght@1,300;1,400&display=swap');
 
+.container {
+  display: flex;
+  justify-content: center;
+  padding-top: 19px;
+}
+
 .button {
   background-color: rgb(169, 217, 233);
   height: 50px;
